@@ -101,10 +101,10 @@ DEPOSIT_PATTERNS = [
     (re.compile(r"BLUEPRINT CAPITAL INCOME REIT",  re.I), "Blueprint REIT"),
     (re.compile(r"DFA|DFEMX|DFQTX|DFVQX|DFREX",  re.I), "Fund Dividends"),
     (re.compile(r"VANGUARD TOTAL|VTI\b",            re.I), "Fund Dividends"),
+    (re.compile(r"YOU SOLD.*VMLUX",                re.I), "Bond Sale"),
+    (re.compile(r"YOU SOLD.*VANGUARD LIMITD",      re.I), "Bond Sale"),
     (re.compile(r"VANGUARD (LIMITD|INTERMD|DEVELOPED)", re.I), "Bond Dividends"),
     (re.compile(r"VTMGX",                           re.I), "Bond Dividends"),
-    (re.compile(r"YOU SOLD.*VMLUX",                re.I), "Asset Sale"),
-    (re.compile(r"YOU SOLD.*VANGUARD LIMITD",      re.I), "Asset Sale"),
     (re.compile(r"YOU BOUGHT.*FZFXX",              re.I), None),  # internal – skip
     (re.compile(r"REINVESTMENT CASH",              re.I), None),  # tiny – skip
     (re.compile(r"INTEREST EARNED",               re.I), None),  # tiny – skip
@@ -573,7 +573,7 @@ W_COLORS = {
 
 D_COLORS = {
     "Fund Dividends": "#16a34a",
-    "Asset Sale":     "#65a30d",
+    "Bond Sale":      "#65a30d",
     "Blueprint REIT": "#0d9488",
     "Bond Dividends": "#6ee7b7",
 }
