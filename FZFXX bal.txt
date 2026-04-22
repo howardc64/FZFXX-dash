@@ -1,0 +1,38 @@
+===
+
+Generate python script with following synopsis
+
+fzfxxbal csv endbal
+
+csv	csv file from fidelity containing activity log
+endbal	current ending balance
+
+Sample endbal = 20063.63 on 4/20/2026
+
+=== Task
+
+Add a right most column to csv file for FZFXX balance
+	each csv file can have different columns, add right most column
+
+Calculate FZFXX balance
+	derive balance column from endbal on today's date (date when python script runs) 
+	negative balance is disallowed. If encounter, find why
+	withdraws (FZFXX)
+		TRANSFER FROM
+		REDEMPTIONS
+		SOLD
+	deposits (FZFXX)
+		BOUGHT
+		DIVIDEND RECEIVED
+		DIVIDEND EARNED
+		TRANSFER TO
+	insert FZFXX balance in every row regardless of transition type
+
+=== Python
+
+Generate python script for the above task and synopsis
+
+=== Reference
+
+Use prior python script as reference
+Use prior csv file as reference

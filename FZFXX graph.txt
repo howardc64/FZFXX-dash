@@ -1,0 +1,60 @@
+===
+
+Input
+
+csv file with FZFXX balance
+
+Output
+
+Summary html with FZFXX balance graph
+
+=== Draw basic graph
+
+Draw graph of FZFXX balance
+	vertical axis = $ starting at $0
+	horizontal axis = date
+	add typical calendar label on horizontal axis every 1/2", for example Q1/Q2/Q3/Q4,25/26
+
+=== UI
+
+2 check box
+
+One to display withdraw lines
+One to display deposit lines
+
+=== Overlay
+
+Bottom layer FZFXX balance lines
+Top layer withdraw and deposit lines
+
+
+=== show key withdraws
+
+Make list of key FXFXX withdraws
+	high amounts
+	scheduled
+
+Draw different visually distinctive color (towards red spectrum) vertical line for each key withdraw
+	height = $ amount
+	Line begin at X axis
+
+=== show key deposits
+
+Make List of key FXFXX deposits
+	high amounts
+
+Draw different visually distinctive color ( towards green spectrum ) dashed vertical line for each key deposit
+	height = $ amount
+	Line begin at X axis
+
+Make table of all key withdraw sources
+	name column
+	column for every year = total for the year
+
+Make table of all key deposit sources
+	name volume
+	column for every year = total for the year
+
+=== Reference
+
+Use prior python script as reference
