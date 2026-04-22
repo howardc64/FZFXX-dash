@@ -8,6 +8,8 @@ Output
 
 Summary html with FZFXX balance graph
 
+Build python script to generate html from csv file
+
 === Draw basic graph
 
 Draw graph of FZFXX balance
