@@ -84,12 +84,14 @@ def find_header_row(rows):
 
 
 def find_footer_start(rows, header_idx):
+    # Accept both MM/DD/YYYY and YYYY-MM-DD date formats
+    date_pattern = re.compile(r'(\d{2}/\d{2}/\d{4}|\d{4}-\d{2}-\d{2})')
     for i in range(header_idx + 1, len(rows)):
         row = rows[i]
         non_empty = [c.strip() for c in row if c.strip()]
         if not non_empty:
             return i
-        if not re.match(r'\d{2}/\d{2}/\d{4}', non_empty[0]):
+        if not date_pattern.match(non_empty[0]):
             return i
     return len(rows)
 
@@ -126,6 +128,28 @@ def main():
     header       = all_rows[header_idx]
     footer_start = find_footer_start(all_rows, header_idx)
     data_rows    = all_rows[header_idx + 1 : footer_start]   # newest-first
+
+    # Strip any pre-existing FZFXX Balance column so re-runs don't duplicate it
+    fzfxx_bal_col = None
+    for i, h in enumerate(header):
+        if 'fzfxx balance' in h.lower():
+            fzfxx_bal_col = i
+            break
+    if fzfxx_bal_col is not None:
+        header    = [c for j, c in enumerate(header)    if j != fzfxx_bal_col]
+        data_rows = [[c for j, c in enumerate(row) if j != fzfxx_bal_col] for row in data_rows]
+        all_rows  = (
+            [[c for j, c in enumerate(row) if j != fzfxx_bal_col] for row in all_rows[:header_idx]]
+            + [header]
+            + data_rows
+            + [[c for j, c in enumerate(row) if j != fzfxx_bal_col] for row in all_rows[footer_start:]]
+        )
+        # Recompute indices after stripping
+        header_idx   = find_header_row(all_rows)
+        header       = all_rows[header_idx]
+        footer_start = find_footer_start(all_rows, header_idx)
+        data_rows    = all_rows[header_idx + 1 : footer_start]
+        print("  NOTE: pre-existing 'FZFXX Balance' column removed and recalculated.")
 
     def col(name):
         for i, h in enumerate(header):

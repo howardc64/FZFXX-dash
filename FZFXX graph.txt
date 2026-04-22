@@ -22,11 +22,12 @@ Draw graph of FZFXX balance
 One to display withdraw lines
 One to display deposit lines
 
+Pop up window should not display off edge of browser window
+
 === Overlay
 
 Bottom layer FZFXX balance lines
 Top layer withdraw and deposit lines
-
 
 === show key withdraws
 
